@@ -20,6 +20,7 @@ jobs:
     - name: Applying clang-format for changed files
       run: |
         URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
+        echo $URL
         FILES=$(curl -s --request GET --get $URL |  jq -r '.[] | .filename' | grep ^include | grep -v nanorange\.hpp\$)
         echo $FILES
         xargs --help
