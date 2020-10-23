@@ -23,8 +23,6 @@ jobs:
         FILES=$(curl -s --request GET --get $URL |  jq -r '.[] | .filename' | grep ^include | grep -v nanorange\.hpp\$)
         echo $FILES
         xargs --help
-        echo $FILES | xargs -n1 -t -r file
-        echo $FILES | xargs -n1 -t -r clang-format-6.0 --style=file -i
 
     - name: Creating diff
       run: git diff > clang-format-diff.diff
